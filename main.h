@@ -41,15 +41,16 @@ typedef struct fmt fmt_t;
 int _printf(const char *format, ...);
 int handle_printf(const char *fmt, int *i,
 va_list list, char buffer[], int flags, int width, int precision, int size);
+
 /****************** FUNCTIONS ******************/
 
-/* Functions to print strings and chars */
-int print_string(va_list types, char buffer[],
-	int flags, int width, int precision, int size);
+/* Functions to print chars and strings */
 int print_char(va_list types, char buffer[],
 	int flags, int width, int precision, int size);
+int print_string(va_list types, char buffer[],
+	int flags, int width, int precision, int size);
 int print_percent(va_list types, char buffer[],
-		int flags, int width, int precision, int size);
+	int flags, int width, int precision, int size);
 
 /* Functions to print numbers */
 int print_int(va_list types, char buffer[],
@@ -66,7 +67,7 @@ int print_hexa_upper(va_list types, char buffer[],
 	int flags, int width, int precision, int size);
 
 int print_hexa(va_list types, char map_to[],
-char buffer[], int flag_ch, int width, int precision, int size);
+char buffer[], int flags, char flag_ch, int width, int precision, int size);
 
 /* Function to print non printable characters */
 int print_non_printable(va_list types, char buffer[],
@@ -90,7 +91,7 @@ int print_reverse(va_list types, char buffer[],
 int print_rot13string(va_list types, char buffer[],
 	int flags, int width, int precision, int size);
 
-/* Width handler */
+/* width handler */
 int handle_write_char(char c, char buffer[],
 	int flags, int width, int precision, int size);
 int write_number(int is_positive, int ind, char buffer[],
@@ -108,7 +109,6 @@ char buffer[],
 int is_printable(char);
 int append_hexa_code(char, char[], int);
 int is_digit(char);
-
 long int convert_size_number(long int num, int size);
 long int convert_size_unsgnd(unsigned long int num, int size);
 
